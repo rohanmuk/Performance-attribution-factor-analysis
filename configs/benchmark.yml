@@ -1,0 +1,55 @@
+# -----------------------------------------------------------------------------
+# Benchmark definition for Brinson-Fachler attribution.
+#
+# The Brinson benchmark is RECONSTRUCTED as:
+#     Rb_total(t) = sum_i  sector_weight_i * sector_etf_return_i(t)
+#
+# Sector returns are proxied by the 11 SPDR Select Sector ETFs. Benchmark sector
+# weights are a STATIC, DATED SNAPSHOT of the S&P 500 GICS composition.
+#
+# STATED LIMITATIONS (see README):
+#   * A static snapshot ignores weight drift over the sample. Real S&P 500 sector
+#     weights move materially (e.g. Info Tech rose from ~20% to ~30%+ over 2015-2025).
+#     A production system would use a monthly/quarterly weight time series.
+#   * SPDR sector ETFs are proxies: GICS reclassifications (e.g. the 2018 creation
+#     of Communication Services), ETF fees and tracking error make them imperfect
+#     stand-ins for the S&P 500 sector sleeves.
+#   * Consequently the reconstructed benchmark does not exactly equal SPY; the
+#     report quantifies the tracking gap.
+# -----------------------------------------------------------------------------
+
+# Ticker used as the "true" market benchmark in the factor module and for the
+# reconstructed-vs-actual tracking-gap diagnostic.
+market_proxy: "SPY"
+
+# GICS sector -> SPDR Select Sector ETF (sector-return proxy).
+sector_etfs:
+  "Information Technology":   "XLK"
+  "Financials":               "XLF"
+  "Health Care":              "XLV"
+  "Consumer Discretionary":   "XLY"
+  "Consumer Staples":         "XLP"
+  "Energy":                   "XLE"
+  "Industrials":              "XLI"
+  "Materials":                "XLB"
+  "Utilities":                "XLU"
+  "Real Estate":              "XLRE"
+  "Communication Services":   "XLC"
+
+# S&P 500 sector-weight snapshot (percent). Values are normalized to sum to 1.0
+# at load time. Source: S&P Dow Jones Indices / SPDR sector ETF fact-sheet
+# composition, approximate as of the snapshot date below. Update as needed.
+sector_weights_snapshot_date: "2025-06-30"
+sector_weights_source: "S&P Dow Jones Indices / State Street SPDR sector weightings (approximate)"
+sector_weights_pct:
+  "Information Technology":   31.7
+  "Financials":               14.0
+  "Consumer Discretionary":   10.3
+  "Health Care":              10.1
+  "Communication Services":    9.4
+  "Industrials":               8.2
+  "Consumer Staples":          5.7
+  "Energy":                    3.2
+  "Utilities":                 2.4
+  "Real Estate":               2.1
+  "Materials":                 1.9

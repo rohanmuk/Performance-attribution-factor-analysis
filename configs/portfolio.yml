@@ -1,0 +1,71 @@
+# -----------------------------------------------------------------------------
+# Active portfolio definition.
+#
+# 30 US large/mid-cap names mapped to their GICS sector, with TARGET weights.
+# Weights drift with prices between rebalances and reset to these targets on the
+# rebalance schedule. Target weights sum to 1.0 (see test_portfolio.py).
+#
+# GICS sector names MUST match the keys in configs/benchmark.yml exactly.
+# -----------------------------------------------------------------------------
+name: "Concentrated US Large-Cap Growth Tilt"
+
+# Analysis window (month-end returns). end is auto-capped to the latest month
+# for which BOTH prices and Ken French factors are available.
+start: "2015-01-01"
+end: "2025-12-31"
+
+# Rebalance frequency: Q (calendar-quarter start), M (monthly), A (annual), none.
+rebalance: "Q"
+
+holdings:
+  # Information Technology (target 25%)
+  - {ticker: AAPL, sector: "Information Technology", target_weight: 0.07}
+  - {ticker: MSFT, sector: "Information Technology", target_weight: 0.07}
+  - {ticker: NVDA, sector: "Information Technology", target_weight: 0.06}
+  - {ticker: AVGO, sector: "Information Technology", target_weight: 0.03}
+  - {ticker: CRM,  sector: "Information Technology", target_weight: 0.02}
+
+  # Communication Services (target 12%)
+  - {ticker: GOOGL, sector: "Communication Services", target_weight: 0.05}
+  - {ticker: META,  sector: "Communication Services", target_weight: 0.04}
+  - {ticker: NFLX,  sector: "Communication Services", target_weight: 0.03}
+
+  # Consumer Discretionary (target 12%)
+  - {ticker: AMZN, sector: "Consumer Discretionary", target_weight: 0.06}
+  - {ticker: HD,   sector: "Consumer Discretionary", target_weight: 0.04}
+  - {ticker: NKE,  sector: "Consumer Discretionary", target_weight: 0.02}
+
+  # Health Care (target 12%)
+  - {ticker: UNH, sector: "Health Care", target_weight: 0.04}
+  - {ticker: JNJ, sector: "Health Care", target_weight: 0.03}
+  - {ticker: LLY, sector: "Health Care", target_weight: 0.05}
+
+  # Consumer Staples (target 9%)
+  - {ticker: PG,   sector: "Consumer Staples", target_weight: 0.03}
+  - {ticker: KO,   sector: "Consumer Staples", target_weight: 0.02}
+  - {ticker: COST, sector: "Consumer Staples", target_weight: 0.04}
+
+  # Financials (target 9%)
+  - {ticker: JPM, sector: "Financials", target_weight: 0.05}
+  - {ticker: BAC, sector: "Financials", target_weight: 0.02}
+  - {ticker: GS,  sector: "Financials", target_weight: 0.02}
+
+  # Industrials (target 6%)
+  - {ticker: CAT, sector: "Industrials", target_weight: 0.02}
+  - {ticker: HON, sector: "Industrials", target_weight: 0.02}
+  - {ticker: UNP, sector: "Industrials", target_weight: 0.02}
+
+  # Energy (target 5%)
+  - {ticker: XOM, sector: "Energy", target_weight: 0.03}
+  - {ticker: CVX, sector: "Energy", target_weight: 0.02}
+
+  # Real Estate (target 5%)
+  - {ticker: PLD, sector: "Real Estate", target_weight: 0.02}
+  - {ticker: AMT, sector: "Real Estate", target_weight: 0.03}
+
+  # Materials (target 3%)
+  - {ticker: LIN, sector: "Materials", target_weight: 0.02}
+  - {ticker: FCX, sector: "Materials", target_weight: 0.01}
+
+  # Utilities (target 2%)
+  - {ticker: NEE, sector: "Utilities", target_weight: 0.02}

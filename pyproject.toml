@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "attribution"
+version = "0.1.0"
+description = "Active return attribution toolkit: holdings-based Brinson-Fachler + returns-based factor attribution for a US equity portfolio vs. the S&P 500."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Rohan" }]
+keywords = ["attribution", "brinson", "fama-french", "portfolio", "performance", "factor-model"]
+
+# Pinned to a known-good stack for Python 3.9 (numpy<2 for statsmodels/scipy compatibility).
+dependencies = [
+    "numpy==1.26.4",
+    "pandas==2.2.3",
+    "scipy==1.13.1",
+    "matplotlib==3.9.4",
+    "yfinance>=0.2.40",
+    "pandas-datareader==0.10.0",
+    "pyarrow>=15",
+    "PyYAML>=6",
+    "tabulate>=0.9",
+    "requests>=2.31",
+    "lxml>=5",
+]
+
+[project.optional-dependencies]
+# statsmodels is used ONLY to validate the hand-rolled math in tests; it is not
+# imported anywhere in src/attribution.
+dev = [
+    "pytest>=8",
+    "statsmodels==0.14.6",
+    "jupyter",
+    "nbconvert",
+    "ipykernel",
+]
+
+[project.scripts]
+attribution = "attribution.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = [
+    "network: test requires internet access (yfinance / Ken French).",
+]

@@ -1,0 +1,26 @@
+# Cached market data (re-downloadable from yfinance / Ken French)
+/data/*
+!/data/.gitkeep
+
+# Generated report artifacts (charts + html/md); regenerate with `attribution report`
+/reports/*
+!/reports/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Virtual env
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
