@@ -1,7 +1,19 @@
 # Active Return Attribution Toolkit
 
-Explain a US equity portfolio's performance **relative to its benchmark** two
-complementary ways, and show that they tell one coherent story:
+When a portfolio beats its benchmark, the useful question is *why* — was it sector
+positioning, security selection, or a factor tilt the manager may not even realize
+they're taking? This project answers that from two complementary angles. Holdings-based
+Brinson-Fachler attribution decomposes active return into allocation, selection, and
+interaction effects by sector, geometrically linked across periods so the pieces
+reconcile exactly to cumulative active return. Returns-based factor attribution
+regresses the portfolio against CAPM, Fama-French 3/5-factor, and Carhart models to
+separate factor exposure from genuine alpha, with Newey-West standard errors and
+rolling betas to expose style drift. The two lenses are then tied back together, so a
+sector overweight and its corresponding factor tilt tell a single, coherent story
+rather than two disconnected tables.
+
+In short — explain a US equity portfolio's performance **relative to its benchmark**
+two complementary ways, and show that they tell one coherent story:
 
 1. **Holdings-based Brinson-Fachler attribution** — decomposes active return into
    **allocation**, **selection**, and **interaction** by GICS sector, with proper
